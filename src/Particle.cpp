@@ -43,7 +43,11 @@ void Particle::update()
 
 void Particle::draw() const
 {
+    ofPushStyle();
+    ofNoFill();
+    ofSetColor(ofColor::blueSteel);
     ofDrawCircle(position, 30);
+    ofPopStyle();
 }
 
 

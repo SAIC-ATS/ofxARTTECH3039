@@ -21,6 +21,6 @@ public:
     void update();
     void draw() const;
 
-    std::vector<std::unique_ptr<Particle>> particles;
+    std::vector<std::shared_ptr<Particle>> particles;
 
 };
