@@ -58,6 +58,19 @@ bool Circle::fromPoints(const glm::vec2& pt1,
 }
 
 
+bool Circle::fromPoints(const glm::vec3& pt1,
+                        const glm::vec3& pt2,
+                        const glm::vec3& pt3,
+                        Circle& circle,
+                        float epsilon)
+{
+    return fromPoints(glm::vec2(pt1.x, pt1.y),
+                      glm::vec2(pt2.x, pt2.y),
+                      glm::vec2(pt3.x, pt3.y),
+                      circle,
+                      epsilon);
+}
+
 Circle::~Circle()
 {
 }

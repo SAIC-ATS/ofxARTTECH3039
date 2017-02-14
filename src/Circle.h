@@ -46,6 +46,22 @@ public:
                            Circle& circle,
                            float epsilon = DEFAULT_EPSILON);
 
+    /// \brief Create a circle from three co-planar points.
+    ///
+    /// In this method, the z-component is ignored.
+    ///
+    /// \param p1 co-planar point 1.
+    /// \param p2 co-planar point 2.
+    /// \param p3 co-planar point 3.
+    /// \param circle The circle to create.
+    /// \param epsilon T
+    /// \returns true if a valid Circle was created.
+    static bool fromPoints(const glm::vec3& p1,
+                           const glm::vec3& p2,
+                           const glm::vec3& p3,
+                           Circle& circle,
+                           float epsilon = DEFAULT_EPSILON);
+
     /// \brief Default epsilon.
     static const float DEFAULT_EPSILON;
 
