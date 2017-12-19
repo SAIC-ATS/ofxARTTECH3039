@@ -14,7 +14,7 @@ void ofApp::update()
     kinect.update();
     if (kinect.isFrameNew())
     {
-        depthProcessor.setRawDepthPixels(kinect.getRawDepthPixels());
+        depthProcessor.setRawDepthPixels(kinect.getDistancePixels());
     }
 }
 

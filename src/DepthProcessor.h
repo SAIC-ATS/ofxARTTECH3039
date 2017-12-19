@@ -5,15 +5,14 @@
 #include "ofxGui.h"
 #include "ofxCv.h"
 
-
 class DepthProcessor
 {
 public:
     DepthProcessor();
     
     void allocate(std::size_t width, std::size_t height);
-    
-    void setRawDepthPixels(const ofFloatPixels& depthPixels);
+
+    void setRawDepthPixels(const ofFloatPixels& rawDepthPixels);
     
     void setForegroundThreshold(float f);
     void setBackgroundThreshold(float f);
@@ -43,6 +42,8 @@ private:
 
     void _foregroundThresholdChanged(float& f);
     void _backgroundThresholdChanged(float& f);
+  
+    void _processRawDepthPixels();
 
     ofxPanel _gui;
     

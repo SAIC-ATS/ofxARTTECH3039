@@ -40,7 +40,6 @@ void DepthProcessor::allocate(std::size_t width, std::size_t height)
     }
 }
 
-
 void DepthProcessor::setRawDepthPixels(const ofFloatPixels& rawDepthPixels)
 {
     uint16_t maxDepth = 0;
