@@ -42,4 +42,3 @@ void ofApp::draw()
         contour.draw();
     }
 }
-

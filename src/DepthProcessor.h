@@ -34,6 +34,7 @@ private:
     void _setup(ofEventArgs& evt);
     void _update(ofEventArgs& evt);
     void _draw(ofEventArgs& evt);
+    void _exit(ofEventArgs& evt);
     void _onKeyPressed(ofKeyEventArgs& evt);
     
     void _onMousePressed(ofMouseEventArgs& evt);
@@ -90,6 +91,7 @@ private:
     ofEventListener _setupListener;
     ofEventListener _updateListener;
     ofEventListener _drawListener;
+    ofEventListener _exitListener;
     ofEventListener _keyPressedListener;
     ofEventListener _mousePressedListener;
     ofEventListener _mouseDraggedListener;

@@ -5,6 +5,7 @@ DepthProcessor::DepthProcessor():
     _setupListener(ofEvents().setup.newListener(this, &DepthProcessor::_setup)),
     _updateListener(ofEvents().update.newListener(this, &DepthProcessor::_update)),
     _drawListener(ofEvents().draw.newListener(this, &DepthProcessor::_draw)),
+    _exitListener(ofEvents().exit.newListener(this, &DepthProcessor::_exit)),
     _keyPressedListener(ofEvents().keyPressed.newListener(this, &DepthProcessor::_onKeyPressed)),
     _mousePressedListener(ofEvents().mousePressed.newListener(this, &DepthProcessor::_onMousePressed)),
     _mouseDraggedListener(ofEvents().mouseDragged.newListener(this, &DepthProcessor::_onMouseDragged)),
@@ -196,7 +197,8 @@ void DepthProcessor::_setup(ofEventArgs& evt)
     _gui.add(_depthParameters);
     _gui.add(_prerprocessParameters);
     _gui.add(_contourParameters);
-
+    
+    _gui.loadFromFile("DepthProcessor.xml");
 }
 
 
@@ -359,3 +361,6 @@ int DepthProcessor::getDepthAtPosition(std::size_t x, std::size_t y) const
     return -1;
 }
 
+void DepthProcessor::_exit(ofEventArgs& evt) {
+    _gui.saveToFile("DepthProcessor.xml");
+}
