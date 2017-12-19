@@ -3,14 +3,13 @@
 void ofApp::setup()
 {
     // Initialize Kinect V2
-    ofxKinectV2 tmp;
-    vector <ofxKinectV2::KinectDeviceInfo> deviceList = tmp.getDeviceList();
+    vector <ofxKinectV2::KinectDeviceInfo> deviceList = ofxKinectV2().getDeviceList();
   
     // Check to see if there is a KinectV2 attached.
     if (deviceList.size() > 0) {
-        std::cout<< "Success: Kinect V2 found" << endl;
+        std::cout<< "Success: Kinect V2 found" << std::endl;
     } else {
-        std::cerr<< "Failure: No Kinect V2 found" << endl;
+        std::cerr<< "Failure: No Kinect V2 found" << std::endl;
       return;
     }
     

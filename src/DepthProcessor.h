@@ -42,8 +42,6 @@ private:
 
     void _foregroundThresholdChanged(float& f);
     void _backgroundThresholdChanged(float& f);
-  
-    void _processRawDepthPixels();
 
     ofxPanel _gui;
     
