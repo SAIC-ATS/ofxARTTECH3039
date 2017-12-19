@@ -13,7 +13,7 @@ public:
     
     void allocate(std::size_t width, std::size_t height);
     
-    void setRawDepthPixels(const ofShortPixels& depthPixels);
+    void setRawDepthPixels(const ofFloatPixels& depthPixels);
     
     void setForegroundThreshold(float f);
     void setBackgroundThreshold(float f);

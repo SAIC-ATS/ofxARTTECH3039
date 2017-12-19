@@ -8,12 +8,16 @@ void ofApp::setup()
   
     // Check to see if there is a KinectV2 attached.
     if (deviceList.size() > 0) {
-      std::cout<< "Success: Kinect V2 found";
+        std::cout<< "Success: Kinect V2 found" << endl;
     } else {
-      std::cerr<< "Failure: No Kinect V2 found";
+        std::cerr<< "Failure: No Kinect V2 found" << endl;
       return;
     }
-  
+    
+    // Reset min/max distances (as per ofxKinectV2).
+    kinect.params.getFloat("minDistance").set(0);
+    kinect.params.getFloat("maxDistance").set(12000);
+    
     kinect.open(deviceList[0].serial);
 }
 
