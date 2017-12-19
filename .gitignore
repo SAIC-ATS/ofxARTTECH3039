@@ -27,3 +27,32 @@
 *.exe
 *.out
 *.app
+
+# General
+/bin/*
+!/bin/data
+.DS_Store
+config.make
+Makefile
+
+########################
+# IDE files which should
+# be ignored
+########################
+
+# XCode
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+# XCode 4
+xcuserdata
+*.xcworkspace
+*.xcuserstate
+*.xcconfig
+*.plist
+*.xcodeproj/
+# Code::Blocks
+*.depend
+*.layout
