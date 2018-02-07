@@ -5,15 +5,14 @@
 #include "ofxGui.h"
 #include "ofxCv.h"
 
-
 class DepthProcessor
 {
 public:
     DepthProcessor();
     
     void allocate(std::size_t width, std::size_t height);
-    
-    void setRawDepthPixels(const ofShortPixels& depthPixels);
+
+    void setRawDepthPixels(const ofFloatPixels& rawDepthPixels);
     
     void setForegroundThreshold(float f);
     void setBackgroundThreshold(float f);
@@ -34,6 +33,7 @@ private:
     void _setup(ofEventArgs& evt);
     void _update(ofEventArgs& evt);
     void _draw(ofEventArgs& evt);
+    void _exit(ofEventArgs& evt);
     void _onKeyPressed(ofKeyEventArgs& evt);
     
     void _onMousePressed(ofMouseEventArgs& evt);
@@ -90,6 +90,7 @@ private:
     ofEventListener _setupListener;
     ofEventListener _updateListener;
     ofEventListener _drawListener;
+    ofEventListener _exitListener;
     ofEventListener _keyPressedListener;
     ofEventListener _mousePressedListener;
     ofEventListener _mouseDraggedListener;

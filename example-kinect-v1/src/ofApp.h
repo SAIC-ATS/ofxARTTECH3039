@@ -18,6 +18,4 @@ public:
 
     // The Depth Processor
     DepthProcessor depthProcessor;
-    
-    
 };
