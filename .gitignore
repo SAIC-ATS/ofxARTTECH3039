@@ -1,58 +1,39 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+docs/html
+docs/tagfile.xml
+docs/*.tag
 
-# Precompiled Headers
-*.gch
-*.pch
+_*/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+raw/
+models/
+data/
+libs/dlib/
 
-# Fortran module files
-*.mod
-*.smod
+build-example*
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+.compiler*
+Project.xcconfig
+*.xcodeproj
+*.plist
 
-# Executables
-*.exe
-*.out
+example*/Makefile
+example*/config.make
+
+*.swp
+*.bg
+*.qbs
+
+*.sln
+*.vcxproj
+*.vcxproj.filters
+icon.rc
+
+*.mode1v3
+
+# xcode
+*.pbxuser
+*.perspectivev3
+xcuserdata
+build
 *.app
 
-# General
-/bin/*
-!/bin/data
-.DS_Store
-config.make
-Makefile
-
-########################
-# IDE files which should
-# be ignored
-########################
-
-# XCode
-*.pbxuser
-*.perspective
-*.perspectivev3
-*.mode1v3
-*.mode2v3
-# XCode 4
-xcuserdata
-*.xcworkspace
-*.xcuserstate
-*.xcconfig
-*.plist
-*.xcodeproj/
-# Code::Blocks
-*.depend
-*.layout
