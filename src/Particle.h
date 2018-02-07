@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "ofTypes.h"
+#include "ofMain.h"
 
 
 class Particle
@@ -32,5 +32,6 @@ public:
     float drag = 0.98;
 
     uint64_t age = 0;
+
 };
 
