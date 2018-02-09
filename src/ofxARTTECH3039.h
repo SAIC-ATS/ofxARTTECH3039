@@ -12,3 +12,4 @@
 #include "ofxGui.h"
 #include "CvUtils.h"
 #include "ParticleSystem.h"
+#include "PolylineDrawTool.h"

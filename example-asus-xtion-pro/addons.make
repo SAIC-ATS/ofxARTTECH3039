@@ -1,4 +1,4 @@
-ofxARTTECH-3039
+ofxARTTECH3039
 ofxCv
 ofxGui
 ofxNI2

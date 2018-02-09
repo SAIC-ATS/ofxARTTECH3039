@@ -1,4 +1,4 @@
-//
+ //
 // Copyright (c) 2017 Christopher Baker <https://christopherbaker.net>
 //
 // SPDX-License-Identifier:    MIT
@@ -277,32 +277,37 @@ std::vector<Circle> CvUtils::fitCircles(const ofPolyline& contour)
 
 std::vector<float> CvUtils::getCurvatures(const ofPolyline& contour)
 {
-    auto circles = fitCircles(contour);
-
+//    auto circles = fitCircles(contour);
+//
+//    std::vector<float> curvatures;
+//
+//    for (auto i = 0; i < circles.size(); ++i)
+//    {
+//        const auto& circle = circles[i];
+//
+//        float sign = 1;
+//
+//        if (std::isfinite(circle.radius()))
+//        {
+//            const auto& position = circle.center();
+//            const auto& point = glm::vec2(contour[i].x, contour[i].y);
+//            sign = glm::normalize(glm::cross(contour[i], glm::vec3(position, 0))).z;
+//        }
+//
+//        curvatures.push_back(sign / circle.radius());
+//
+//    }
     std::vector<float> curvatures;
-
-    for (auto i = 0; i < circles.size(); ++i)
+    for (std::size_t i = 0; i < contour.size(); ++i)
     {
-        const auto& circle = circles[i];
-
-        float sign = 1;
-
-        if (std::isfinite(circle.radius()))
-        {
-            const auto& position = circle.center();
-            const auto& point = glm::vec2(contour[i].x, contour[i].y);
-            sign = glm::normalize(glm::cross(contour[i], glm::vec3(position, 0))).z;
-        }
-
-        curvatures.push_back(sign / circle.radius());
-
+        curvatures.push_back(contour.getDegreesAtIndex(i) / 360.0);
     }
-
+    
     return curvatures;
 }
 
 
-std::vector<float> CvUtils::smooth(const std::vector<float>& data, float alpha)
+std::vector<float> CvUtils::smooth(const std::vector<float>& data, float alpha, bool isClosed)
 {
     std::vector<float> smoothed;
 

@@ -119,7 +119,7 @@ public:
     /// radius is set to std::numeric_limits<float>::infinity().
     ///
     /// \param contour The contour to fit.
-    /// \returns a set of radii of curvature for each point in the contour.
+    /// \returns a set of circles that fit each triplet.
     static std::vector<Circle> fitCircles(const ofPolyline& contour);
 
     /// \brief Caclculate the radii of curvature for each point given its neighbors.
@@ -130,7 +130,9 @@ public:
     static std::vector<float> getCurvatures(const ofPolyline& contour);
 
     /// \brief Smooth values in a vector of floats using a low pass filter.
-    static std::vector<float> smooth(const std::vector<float>& data, float alpha = 0.90);
+    static std::vector<float> smooth(const std::vector<float>& data,
+                                     float alpha = 0.90,
+                                     bool isClosed = false);
 
 };
 

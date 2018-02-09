@@ -91,18 +91,8 @@ void DepthProcessor::setRawDepthPixels(const ofFloatPixels& rawDepthPixels)
         }
     }
 
-    if (_blurLevel > 0)
-        ofxCv::blur(_depthPixelsThreshold, _depthPixelsThreshold, _blurLevel);
-
-    if (_threshold > 0)
-        ofxCv::threshold(_depthPixelsThreshold, _depthPixelsThreshold, _threshold, _invertThreshold);
-
-    if (_erodeIterations > 0)
-        ofxCv::erode(_depthPixelsThreshold, _depthPixelsThreshold, _erodeIterations);
-
-    if (_dilateIterations > 0)
-        ofxCv::dilate(_depthPixelsThreshold, _depthPixelsThreshold, _dilateIterations);
-
+    _depthPixelsThreshold = _binaryPreprocessor.process(_depthPixelsThreshold);
+    
     _contourFinder.setMinAreaRadius(_contourMinArea);
     _contourFinder.setMaxAreaRadius(_contourMaxArea);
     _contourFinder.setThreshold(_contourThreshold);
@@ -178,13 +168,6 @@ void DepthProcessor::_setup(ofEventArgs& evt)
     _depthParameters.add(_backgroundThreshold.set("Far Threshold", max, 0, max));
     // _depthParameters.add(_is3D.set("Show 3D", false));
     
-    _prerprocessParameters.setName("Pre-Processor");
-    _prerprocessParameters.add(_blurLevel.set("Blur Level", 0, 0, 30));
-    _prerprocessParameters.add(_threshold.set("Threshold", 128, 0, 255));
-    _prerprocessParameters.add(_invertThreshold.set("Invert Threshold", false));
-    _prerprocessParameters.add(_erodeIterations.set("Erode Iterations", 0, 0, 30));
-    _prerprocessParameters.add(_dilateIterations.set("Dilate Iterations", 0, 0, 30));
-
     _contourParameters.setName("Contour Processor");
     _contourParameters.add(_contourMinArea.set("Contour Min Area", 10, 1, 100));
     _contourParameters.add(_contourMaxArea.set("Contour Max Area", 200, 1, 500));
@@ -194,7 +177,7 @@ void DepthProcessor::_setup(ofEventArgs& evt)
 
     _gui.setup();
     _gui.add(_depthParameters);
-    _gui.add(_prerprocessParameters);
+    _gui.add(_binaryPreprocessor.parameters());
     _gui.add(_contourParameters);
     
     _gui.loadFromFile("DepthProcessor.xml");

@@ -4,6 +4,8 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ofxCv.h"
+#include "BinaryPreprocessor.h"
+
 
 class DepthProcessor
 {
@@ -71,12 +73,15 @@ private:
     
     ofEasyCam _camera;
 
-    ofParameterGroup _prerprocessParameters;
-    ofParameter<float> _blurLevel;
-    ofParameter<int> _threshold;
-    ofParameter<bool> _invertThreshold;
-    ofParameter<int> _erodeIterations;
-    ofParameter<int> _dilateIterations;
+    
+    BinaryPreprocessor _binaryPreprocessor;
+    
+//    ofParameterGroup _prerprocessParameters;
+//    ofParameter<float> _blurLevel;
+//    ofParameter<int> _threshold;
+//    ofParameter<bool> _invertThreshold;
+//    ofParameter<int> _erodeIterations;
+//    ofParameter<int> _dilateIterations;
 
     ofxCv::ContourFinder _contourFinder;
 
