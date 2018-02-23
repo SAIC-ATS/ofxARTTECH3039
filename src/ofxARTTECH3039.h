@@ -11,5 +11,7 @@
 #include "ofxCv.h"
 #include "ofxGui.h"
 #include "CvUtils.h"
+#include "BinaryPreprocessor.h"
+#include "ContourProcessor.h"
 #include "ParticleSystem.h"
 #include "PolylineDrawTool.h"

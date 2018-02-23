@@ -5,44 +5,78 @@
 #include "ofxCv.h"
 
 
-class BinaryPreprocessor
+class BinaryPreprocessor: public ofBaseImage
 {
 public:
     BinaryPreprocessor();
     ~BinaryPreprocessor();
 
     template<typename PixelType>
-    ofPixels_<PixelType> process(const ofPixels_<PixelType>& _pixels);
+    void update(const ofBaseHasPixels_<PixelType>& _pixels);
+
+    template<typename PixelType>
+    void update(const ofPixels_<PixelType>& _pixels);
+
+    // ofBaseDraws
+    using ofBaseDraws::draw;
+    void draw(float x, float y, float w, float h) const override;
     
+    // ofBaseHasTexture
+    void setUseTexture(bool bUseTex) override;
+    bool isUsingTexture() const override;
+    const ofTexture& getTexture() const override;
+    ofTexture& getTexture() override;
+
+    // ofBaseHasPixels
+    const ofPixels& getPixels() const override;
+    ofPixels& getPixels() override;
+
+    float getHeight() const override;
+    float getWidth() const override;
+
+    // Parameters
     ofParameterGroup& parameters();
+    ofParameter<float> blurLevel;
+    ofParameter<int> threshold;
+    ofParameter<bool> invertThreshold;
+    ofParameter<int> erodeIterations;
+    ofParameter<int> dilateIterations;
     
 private:
     ofParameterGroup _parameters;
-    ofParameter<float> _blurLevel;
-    ofParameter<int> _threshold;
-    ofParameter<bool> _invertThreshold;
-    ofParameter<int> _erodeIterations;
-    ofParameter<int> _dilateIterations;
 
+    ofPixels _binaryPixels;
+    
+    bool _isUsingTexture = true;
+    ofTexture _binaryTexture;
+    
 };
 
 
 template<typename PixelType>
-ofPixels_<PixelType> BinaryPreprocessor::process(const ofPixels_<PixelType>& _pixels)
+void BinaryPreprocessor::update(const ofBaseHasPixels_<PixelType>& pixels)
 {
-    ofPixels_<PixelType> pixels = _pixels;
+    update(pixels.getPixels());
+}
+
+
+template<typename PixelType>
+void BinaryPreprocessor::update(const ofPixels_<PixelType>& pixels)
+{
+    ofxCv::convertColor(pixels, _binaryPixels, CV_RGB2GRAY);
+   
+    if (blurLevel > 0)
+        ofxCv::blur(_binaryPixels, _binaryPixels, blurLevel);
     
-    if (_blurLevel > 0)
-        ofxCv::blur(pixels, pixels, _blurLevel);
+    if (threshold > 0)
+        ofxCv::threshold(_binaryPixels, _binaryPixels, threshold, invertThreshold);
     
-    if (_threshold > 0)
-        ofxCv::threshold(pixels, pixels, _threshold, _invertThreshold);
+    if (erodeIterations > 0)
+        ofxCv::erode(_binaryPixels, _binaryPixels, erodeIterations);
     
-    if (_erodeIterations > 0)
-        ofxCv::erode(pixels, pixels, _erodeIterations);
+    if (dilateIterations > 0)
+        ofxCv::dilate(_binaryPixels, _binaryPixels, dilateIterations);
     
-    if (_dilateIterations > 0)
-        ofxCv::dilate(pixels, pixels, _dilateIterations);
-    
-    return pixels;
+    if (_isUsingTexture)
+        _binaryTexture.loadData(_binaryPixels);
 }

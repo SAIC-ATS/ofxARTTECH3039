@@ -91,7 +91,9 @@ void DepthProcessor::setRawDepthPixels(const ofFloatPixels& rawDepthPixels)
         }
     }
 
-    _depthPixelsThreshold = _binaryPreprocessor.process(_depthPixelsThreshold);
+    _binaryPreprocessor.update(_depthPixelsThreshold);
+    
+    _depthPixelsThreshold = _binaryPreprocessor.getPixels();
     
     _contourFinder.setMinAreaRadius(_contourMinArea);
     _contourFinder.setMaxAreaRadius(_contourMaxArea);

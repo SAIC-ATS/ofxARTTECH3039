@@ -30,7 +30,12 @@ public:
     
     /// \brief Get the depth between 0-255.
     int getDepthAtPosition(std::size_t x, std::size_t y) const;
+
+    virtual void setUseTexture(bool bUseTex) { };
     
+    /// \returns true if an internal ofTexture is being used.
+    virtual bool isUsingTexture() const { return true; }
+
 private:
     void _setup(ofEventArgs& evt);
     void _update(ofEventArgs& evt);
