@@ -63,8 +63,11 @@ void BinaryPreprocessor::update(const ofBaseHasPixels_<PixelType>& pixels)
 template<typename PixelType>
 void BinaryPreprocessor::update(const ofPixels_<PixelType>& pixels)
 {
-    ofxCv::convertColor(pixels, _binaryPixels, CV_RGB2GRAY);
-   
+    if (pixels.getNumChannels() != 1)
+        ofxCv::convertColor(pixels, _binaryPixels, CV_RGB2GRAY);
+    else
+        _binaryPixels = pixels;
+
     if (blurLevel > 0)
         ofxCv::blur(_binaryPixels, _binaryPixels, blurLevel);
     

@@ -227,8 +227,6 @@ void DepthProcessor::_draw(ofEventArgs& evt)
             ofPushMatrix();
             ofTranslate(_depthTextureDisplay.getWidth(), 0);
             
-            
-            
             _depthTextureThreshold.draw(0, 0);
             
             ofPushStyle();

@@ -36,7 +36,6 @@ void ofApp::draw()
     ofSetColor(ofColor::yellow);
 
     for (const auto& contour: contours)
-
     {
         contour.draw();
     }
